@@ -35,6 +35,7 @@ app.component("overlay-form", {
       formData: {
         title: "",
         description: "",
+        date: new Date(),
       },
     };
   },
@@ -57,7 +58,7 @@ app.component("overlay-form", {
           title: this.formData.title,
           description: this.formData.description,
           status: "completed",
-          dueDate: "",
+          dueDate: this.formData.date,
           priority: "medium",
           createdAt: "",
           updatedAt: "",
@@ -67,8 +68,11 @@ app.component("overlay-form", {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
+      }).then(res=>res.json()).then(()=>{
+        this.$emit('update-data')
+        this.$emit("close-the-form");
       });
-      this.$emit("close-the-form")
+      
     },
   },
 });

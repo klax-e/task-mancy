@@ -30,7 +30,7 @@
 
       <!-- Tasks Container -->
       <task-container v-if="!formOpen" :tasks="tasks"></task-container>
-      <overlay-form v-if="formOpen" @close-the-form="formOpen=false"></overlay-form>
+      <overlay-form v-show="formOpen" @close-the-form="formOpen=false" @update-data="fetchTasksData"></overlay-form>
     </div>
 
     <!-- Imported App -->

@@ -11,7 +11,7 @@ app.component("task-container", {
           <p>
             {{task.description}}
           </p>
-          <h4>{{ formatDate(task.dueDate)}}</h4>
+          <h4>{{formatDate(task.dueDate)}}</h4>
         </div>
       </div>
       `,
@@ -21,7 +21,8 @@ app.component("task-container", {
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, "0");
       const day = String(date.getDate()).padStart(2, "0");
-      return `${year}-${month}-${day}`;
+      return `${day}-${month}-${year}`;
     },
   },
+  
 });
