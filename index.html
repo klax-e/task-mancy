@@ -18,18 +18,19 @@
     </style>
   </head>
   <body>
-    <div id="app" class="main">
+    <div id="app" class="main"> 
       <nav>
         <h1 class="logo">Task Mancy</h1>
         <button class="add-task-btn"><i class="fa-solid fa-plus"></i></button>
       </nav>
-      {{text}}
+      <task-container  :tasks="tasks"></task-container>
+      
     </div>
 
     <!-- Imported App -->
     <script src="main.js"></script>
     <!-- imported components -->
-    <!-- <script src="./components/card.js"></script> -->
+    <script src="./components/taskContainer.js"></script>
 
     <!-- Always last -->
     <!-- Mounted app -->
