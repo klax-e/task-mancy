@@ -10,12 +10,12 @@ app.component("overlay-form", {
     <form @submit.prevent="submitForm" class="task-add-form" action="post">
       <div class="form-head">
         <h1>Add new Task</h1>
-        <button class="add-task-btn close-btn" @click="closeForm">
+        <button type="button" class="add-task-btn close-btn" @click.prevent="closeForm">
           <i class="fa-solid fa-xmark"></i>
         </button>
       </div>
       <div class="form-input">
-        <input type="text" placeholder="Title of the task" name="title" @input="onChange" />
+        <input type="text" placeholder="Title of the task" :value="formData.title" name="title" @input="onChange" required/>
       </div>
       <div class="form-input">
         <textarea
@@ -24,9 +24,11 @@ app.component("overlay-form", {
         placeholder="Add description"
         name="desc"
           @input="onChange"
+          required
+          :value="formData.description"
         ></textarea>
       </div>
-      <button class="add-task-submit-btn">Add Task</button>
+      <button type='submit'  class="add-task-submit-btn">Add Task</button>
     </form>
   </div>`,
 
@@ -49,6 +51,11 @@ app.component("overlay-form", {
       }
     },
     closeForm() {
+      this.formData = {
+        title: "",
+        description: "",
+        date: new Date(),
+      };
       this.$emit("close-the-form");
     },
     submitForm() {
@@ -68,11 +75,17 @@ app.component("overlay-form", {
         headers: {
           "Content-type": "application/json; charset=UTF-8",
         },
-      }).then(res=>res.json()).then(()=>{
-        this.$emit('update-data')
-        this.$emit("close-the-form");
-      });
-      
+      })
+        .then((res) => res.json())
+        .then(() => {
+          this.$emit("update-data");
+          this.$emit("close-the-form");
+        });
+      this.formData = {
+        title: "",
+        description: "",
+        date: new Date(),
+      };
     },
   },
 });

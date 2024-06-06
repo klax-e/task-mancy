@@ -10,6 +10,7 @@ const app = Vue.createApp({
   },
   methods: {
     fetchTasksData() {
+      // console.log("task executed")
       fetch("https://6660aac85425580055b4d06d.mockapi.io/api/tasks")
         .then((res) => res.json())
         .then((res) => (this.tasks = res.reverse()))
