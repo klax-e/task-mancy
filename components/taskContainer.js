@@ -8,6 +8,7 @@ app.component("task-container", {
   /* html */
   template: `<div class="task-container">
         <div v-for="(task,index) in tasks" v-bind:key="index" class="task-card">
+          <span :style="{backgroundColor : priorityColor(task.priority),}" class="task-priority">{{task.priority}}</span>
           <h3>{{task.title}}</h3>
           <p>
             {{task.description}}
@@ -19,6 +20,13 @@ app.component("task-container", {
       </div>
       `,
   methods: {
+    priorityColor(text){
+      if(text === "high"){
+        return "#da1e37"
+      }
+      return "#8ecae6"
+
+    },
     formatDate(dateTimeString) {
       const date = new Date(dateTimeString);
       const year = date.getFullYear();

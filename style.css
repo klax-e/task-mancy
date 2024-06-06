@@ -87,6 +87,14 @@ nav .logo {
   padding-bottom: 45px;
   box-shadow: 0px 0px 10px #30384150;
 }
+.task-priority{
+  width: fit-content;
+  padding: 2px 10px;
+  font-size: 10px;
+  font-weight: 600;
+  color: white;
+  border-radius: 20px;
+}
 .task-card p,.task-card h3 {
   font-size: 12px;
   max-height: 120px;
@@ -107,7 +115,7 @@ nav .logo {
   bottom: 0;
   left: 0;
   border: 0px;
-  transform: translateY(40px);
+  transform: translateY(50px) rotate(5deg);
   transition: 200ms ease;
   background: var(--success-color);
   color: white;
@@ -134,7 +142,7 @@ nav .logo {
 }
 
 .task-card:hover .done-btn,.task-card:hover .delete-btn {
-  transform: translateY(0px);
+  transform: translateY(0px) rotate(0deg);
   transform: scale(1);
 }
 
