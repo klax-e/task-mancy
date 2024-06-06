@@ -6,15 +6,19 @@
 }
 body {
   width: 100%;
-  min-height: 100vh;
-  overflow-x: hidden;
-
-  background-color: #F5F5F5;
+  height: 100vh;
+  /* overflow-x: hidden; */
+  overflow: hidden;
+  background-color: #f5f5f5;
 }
 .main {
   width: 100%;
-  height: fit-content;
+  height: 100vh;
   padding: 0px 96px;
+  overflow-x: hidden;
+}
+.main-overflow-stop{
+  overflow: hidden;
 }
 nav {
   width: 100%;
@@ -27,7 +31,7 @@ nav .logo {
   font-size: 20px;
   cursor: pointer;
 }
-nav .add-task-btn {
+.add-task-btn {
   width: 30px;
   aspect-ratio: 1;
   display: flex;
@@ -39,12 +43,15 @@ nav .add-task-btn {
   box-shadow: 0px 0px 10px #00000010;
   transition: 100ms;
 }
-nav .add-task-btn:hover {
+.add-task-btn:hover {
   background-color: black;
   color: #ffffff;
 }
 .add-task-btn:active {
   scale: 95%;
+}
+.close-btn:hover {
+  background-color: red;
 }
 .task-container {
   width: 100%;
@@ -52,36 +59,109 @@ nav .add-task-btn:hover {
   display: flex;
   flex-wrap: wrap;
   gap: 20px;
-  padding: 20px 30px 0px;
+  padding: 30px;
 }
 
+.task-card {
+  width: 200px;
+  min-height: 200px;
+  height: fit-content;
+  border-radius: 7px;
+  background-color: #fff;
+  padding: 10px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 20px;
+  flex-direction: column;
+  transition: 200ms ease;
+  cursor: pointer;
+}
+.task-card:hover {
+  box-shadow: 0px 0px 10px #30384150;
+}
+.task-card p {
+  font-size: 12px;
+  /* max-height: 150px; */
+  overflow-y: hidden;
+  text-overflow: ellipsis;
+}
+.task-card h4 {
+  font-size: 12px;
+  font-weight: 700;
+  margin-top: auto;
+}
 
-.task-card{
-    width: 200px;
-    min-height: 200px;
-    height: fit-content;
-    border-radius: 7px;
-    background-color: #fff;
-    padding: 10px;
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    gap: 20px;
-    flex-direction: column;
-    transition: 200ms ease;
-    cursor: pointer;
+.overlay-form {
+  width: 100vw;
+  height: 100vh;
+  padding: 100px 0px 30px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: #ddddddaa;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
-.task-card:hover{
-    box-shadow: 0px 0px 10px #30384150;
+.task-add-form {
+  overflow-y: auto;
+  width: 60vw;
+  min-width: 30vw;
+  height: fit-content;
+  min-height: 40vh;
+  background-color: white;
+  padding: 30px 20px;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 }
-.task-card p{
-    font-size: 12px;
-    /* max-height: 150px; */
-    overflow-y: hidden;
-    text-overflow: ellipsis;
+.form-head {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 }
-.task-card h4{
-    font-size: 12px;
-    font-weight: 700;
-    margin-top: auto;
+.form-head button {
+}
+
+.form-input {
+  width: 90%;
+}
+.form-input p {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.form-input input,
+.form-input-text-area,
+.add-task-submit-btn {
+  width: 100%;
+  height: 40px;
+  margin-top: 10px;
+  border-radius: 7px;
+  border: 1px solid #00000050;
+  padding: 10px;
+}
+input:focus,
+textarea:focus {
+  border: 1px solid black;
+  outline: 0px solid black;
+}
+.form-input-text-area {
+  width: 100%;
+  min-height: 150px;
+  max-height: 200px;
+  resize: vertical;
+  padding: 10px;
+}
+.add-task-submit-btn {
+  width: 90%;
+  padding: 10px 0px;
+  background-color: #000;
+  color: white;
+  font-weight: 600;
+  font-size: 16px;
 }

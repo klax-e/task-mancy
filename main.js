@@ -2,10 +2,8 @@ const app = Vue.createApp({
   data() {
     return {
       tasks: [],
+      formOpen: false,
     };
-  },
-  methods: {
-  
   },
   mounted() {
     fetch("https://6660aac85425580055b4d06d.mockapi.io/api/tasks")
@@ -14,4 +12,3 @@ const app = Vue.createApp({
       .catch((err) => console.log(err.message));
   },
 });
-  

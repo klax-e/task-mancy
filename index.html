@@ -18,19 +18,26 @@
     </style>
   </head>
   <body>
-    <div id="app" class="main"> 
+    <div id="app" class="main">
       <nav>
         <h1 class="logo">Task Mancy</h1>
-        <button class="add-task-btn"><i class="fa-solid fa-plus"></i></button>
+        <button class="add-task-btn" @click="formOpen = true">
+          <i class="fa-solid fa-plus"></i>
+        </button>
       </nav>
-      <task-container  :tasks="tasks"></task-container>
+      <!-- Overlay for adding task -->
       
+
+      <!-- Tasks Container -->
+      <task-container v-if="!formOpen" :tasks="tasks"></task-container>
+      <overlay-form v-if="formOpen" @close-the-form="formOpen=false"></overlay-form>
     </div>
 
     <!-- Imported App -->
     <script src="main.js"></script>
     <!-- imported components -->
     <script src="./components/taskContainer.js"></script>
+    <script src="./components/overlayForm.js"></script>
 
     <!-- Always last -->
     <!-- Mounted app -->

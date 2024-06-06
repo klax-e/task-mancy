@@ -6,17 +6,15 @@ app.component("task-container", {
     },
   },
   /* html */
-  template: `<div class="task-container" v-if="tasks">
+  template: `<div class="task-container">
         <div v-for="(task,index) in tasks" v-bind:key="index" class="task-card">
           <p>
             {{task.description}}
           </p>
           <h4>{{ formatDate(task.dueDate)}}</h4>
         </div>
-        <div v-else>Loading....</div>
       </div>
       `,
-
   methods: {
     formatDate(dateTimeString) {
       const date = new Date(dateTimeString);
