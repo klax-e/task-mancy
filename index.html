@@ -1,11 +1,48 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
-  
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Task Mancy</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <style>
+      @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+    </style>
+  </head>
+  <body>
+    <div id="app" class="main">
+      <nav>
+        <h1 class="logo">Task Mancy</h1>
+        <button class="add-task-btn" @click="formOpen = true">
+          <i class="fa-solid fa-plus"></i>
+        </button>
+      </nav>
+      <!-- Overlay for adding task -->
+      <overlay-form v-if="formOpen" @close-the-form="formOpen=false" @update-data="fetchTasksData"></overlay-form>
+
+      <!-- Tasks Container -->
+      <task-container :tasks="tasks" @update-data="fetchTasksData"></task-container>
+    </div>
+
+    <!-- Imported App -->
+    <script src="main.js"></script>
+    <!-- imported components -->
+    <script src="./components/taskContainer.js"></script>
+    <script src="./components/overlayForm.js"></script>
+    
+
+    <!-- Always last -->
+    <!-- Mounted app -->
+    <script>
+      const mountedApp = app.mount("#app");
+    </script>
+  </body>
 </html>
