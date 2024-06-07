@@ -26,10 +26,11 @@
         </button>
       </nav>
       <!-- Overlay for adding task -->
-      <overlay-form v-if="formOpen" @close-the-form="formOpen=false" @update-data="fetchTasksData"></overlay-form>
+      <overlay-form v-if="formOpen" @close-the-form="formOpen=false" @update-data="fetchTasksData" :tasks="tasks"></overlay-form>
 
       <!-- Tasks Container -->
-      <task-container :tasks="tasks" @update-data="fetchTasksData"></task-container>
+      <task-container :tasks="tasks" @update-data="fetchTasksData"
+      ></task-container>
     </div>
 
     <!-- Imported App -->
