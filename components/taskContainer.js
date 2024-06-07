@@ -9,12 +9,12 @@ app.component("task-container", {
   template: `
   <div class="task-container">
     <div v-for="(task,index) in tasks" v-bind:key="index" class="task-card">
-      <span :style="{backgroundColor : priorityColor(task.priority),}" class="task-priority">{{task.priority}}</span>
-      <h3>{{task.title}}</h3>
-      <p>
-        {{task.description}}
-      </p>
-      <h4>{{formatDate(task.dueDate)}}</h4>
+    <h3>{{task.title}}</h3>
+    <p>
+    {{task.description}}
+    </p>
+    <h4>{{formatDate(task.dueDate)}}</h4>
+    <span :style="{backgroundColor : priorityColor(task.priority),}" class="task-priority">{{task.priority}}</span>
       <button class='done-btn'>Done</button>
       <button class='delete-btn' @click="confirmModal = true;selectedItemDelete=task.id"><i class="fa-regular fa-trash-can"></i></button>
       <div class="overlay-confirmation" v-if="confirmModal">
@@ -54,7 +54,7 @@ app.component("task-container", {
         .then((res) => res.json())
         .then(() => {
           this.$emit("update-data");
-          this.confirmModal = false
+          this.confirmModal = false;
         })
         .catch((err) => console.log(err.message));
     },
