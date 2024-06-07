@@ -83,11 +83,10 @@ nav .logo {
   cursor: pointer;
   position: relative;
   overflow: hidden;
-  /* border: 2px solid white; */
 }
 .task-card:hover {
   padding-bottom: 45px;
-  /* box-shadow: 0px 0px 10px; */
+  box-shadow: 0px 0px 10px #30384150;
 }
 .task-priority {
   width: fit-content;
@@ -158,10 +157,13 @@ nav .logo {
   top: 0;
   left: 0;
   z-index: 20;
-  background: #00000010;
   display: flex;
   align-items: center;
   flex-direction: column;
+  background-color: #00000010;
+}
+.overlay-form{
+  background-color: #000000aa;
 }
 .task-add-form {
   overflow-y: auto;
@@ -262,4 +264,16 @@ textarea:focus {
   align-items: center;
   justify-content: flex-end;
   gap: 20px;
+}
+.popup-msg{
+  padding: 10px 20px;
+  max-width: 250px;
+  position: fixed;
+  top: 20px;
+  right: 40px;
+  background-color: #eaf6ec;
+  border: 1px solid #28a745;
+  border-radius: var(--subtle-border-radius);
+  font-size: 12px;
+  cursor: pointer;
 }
