@@ -34,10 +34,11 @@ app.component("overlay-form", {
 
   data() {
     return {
+      completeDate : new Date(),
       formData: {
         title: "",
         description: "",
-        date: new Date(),
+        date: this.completeDate,
       },
     };
   },
@@ -54,7 +55,6 @@ app.component("overlay-form", {
       this.formData = {
         title: "",
         description: "",
-        date: new Date(),
       };
       this.$emit("close-the-form");
     },
@@ -67,8 +67,8 @@ app.component("overlay-form", {
           status: "completed",
           dueDate: this.formData.date,
           priority: "medium",
-          createdAt: "",
-          updatedAt: "",
+          createdAt: this.completeDate,
+          updatedAt: this.completeDate,
           assignedTo: "Klaxe",
           tags: ["test", "test"],
         }),
@@ -84,7 +84,6 @@ app.component("overlay-form", {
       this.formData = {
         title: "",
         description: "",
-        date: new Date(),
       };
     },
   },

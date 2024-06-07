@@ -58,24 +58,22 @@ app.component("task-container", {
     },
     deleteTask(id) {
       // console.log(id);
-      fetch("https://6660aac85425580055b4d06d.mockapi.io/api/tasks/" + id, {
+      fetch(`https://6660aac85425580055b4d06d.mockapi.io/api/tasks/${id}`, {
         method: "DELETE",
       })
         .then((res) => res.json())
         .then(() => {
-          this.popUpMsg.isDisplayed = true;
-          setTimeout(() => (this.popUpMsg.isDisplayed = false), 3000);
-          this.$emit("update-data");
-          this.confirmModal = false;
+          this.afterAPIcallTask();
         })
         .catch((err) => console.log(err.message));
     },
     taskDone(id) {
       // console.log(id);
-      fetch("https://6660aac85425580055b4d06d.mockapi.io/api/tasks/" + id, {
+      fetch(`https://6660aac85425580055b4d06d.mockapi.io/api/tasks/${id}`, {
         method: "PUT",
         body: JSON.stringify({
           status: "completed",
+          updatedAt: new Date(),
         }),
         headers: {
           "Content-Type": "application/json",
@@ -83,12 +81,15 @@ app.component("task-container", {
       })
         .then((res) => res.json())
         .then(() => {
-          this.popUpMsg.isDisplayed = true;
-          setTimeout(() => (this.popUpMsg.isDisplayed = false), 3000);
-          this.$emit("update-data");
-          this.confirmModal = false;
+          this.afterAPIcallTask();
         })
         .catch((err) => console.log(err.message));
+    },
+    afterAPIcallTask() {
+      this.popUpMsg.isDisplayed = true;
+      setTimeout(() => (this.popUpMsg.isDisplayed = false), 3000);
+      this.$emit("update-data");
+      this.confirmModal = false;
     },
   },
 });
