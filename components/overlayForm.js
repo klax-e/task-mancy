@@ -3,11 +3,14 @@ app.component("overlay-form", {
     formOpen: {
       type: Boolean,
     },
+    tasks: {
+      type: Array,
+    },
   },
   template:
     /* html */
     `<div class="overlay-form">
-    <form @submit.prevent="submitForm" class="task-add-form" action="post">
+    <form @submit.prevent="submitForm" class="task-add-form" method="post">
       <div class="form-head">
         <h1>Add new Task</h1>
         <button type="button" class="add-task-btn close-btn" @click.prevent="closeForm">
@@ -28,48 +31,85 @@ app.component("overlay-form", {
           :value="formData.description"
         ></textarea>
       </div>
+      <div class="form-input">
+        <select name="priority" id="priority-input" class="form-priority-input" :value="formData.priority" @input="onChange">
+          <option value="medium">Medium</option>
+          <option value="high">High</option>
+          <option value="highest">Highest</option>
+        </select>
+        <select name="status" id="status-input" class="form-status-input" :value="formData.status" @input="onChange">
+          <option value="not-started">Not Started</option>
+          <option value="in-progress">In-Progress</option>
+          <option value="completed">Completed</option>
+        </select>
+      </div>
+      <div class="form-input">
+      <input list="assignTo" name="assignTo" id="assign-to" placeholder="Assign to" :value="formData.assignTo" @input="onChange">
+            <datalist id="assignTo">
+              <option v-for="task in tasks" :value="task.assignedTo" ></option>
+            </datalist>
+      </div>
       <button type='submit'  class="add-task-submit-btn">Add Task</button>
     </form>
   </div>`,
 
   data() {
     return {
-      completeDate : new Date(),
+      completeDate: new Date(),
       formData: {
         title: "",
         description: "",
-        date: this.completeDate,
+        priority: "medium",
+        status: "not-started",
+        assignTo: "",
       },
     };
   },
   methods: {
     onChange(e) {
-      const val = e.target.name;
-      if (val === "title") {
-        this.formData.title = e.target.value;
-      } else {
-        this.formData.description = e.target.value;
+      const name = e.target.name;
+      const val = e.target.value;
+      switch (name) {
+        case "title":
+          this.formData.title = val;
+          break;
+        case "desc":
+          this.formData.description = val;
+          break;
+        case "priority":
+          this.formData.priority = val;
+          break;
+        case "status":
+          this.formData.status = val;
+          break;
+        case "assignTo":
+          this.formData.assignTo = val;
+          break;
       }
     },
     closeForm() {
       this.formData = {
         title: "",
         description: "",
+        priority: "medium",
+        status: "not-started",
+        assignTo: "",
       };
       this.$emit("close-the-form");
     },
     submitForm() {
+      // console.log(this.formData);
       fetch("https://6660aac85425580055b4d06d.mockapi.io/api/tasks", {
         method: "POST",
         body: JSON.stringify({
           title: this.formData.title,
           description: this.formData.description,
-          status: "completed",
-          dueDate: this.formData.date,
-          priority: "medium",
+          status: this.formData.status,
+          dueDate: this.completeDate,
+          priority: this.formData.priority,
           createdAt: this.completeDate,
           updatedAt: this.completeDate,
-          assignedTo: "Klaxe",
+          assignedTo: this.formData.assignTo,
           tags: ["test", "test"],
         }),
         headers: {
@@ -84,6 +124,9 @@ app.component("overlay-form", {
       this.formData = {
         title: "",
         description: "",
+        priority: "medium",
+        status: "not-started",
+        assignTo: "",
       };
     },
   },
