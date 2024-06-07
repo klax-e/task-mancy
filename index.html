@@ -26,7 +26,7 @@
         </button>
       </nav>
       <!-- Overlay for adding task -->
-      <overlay-form v-show="formOpen" @close-the-form="formOpen=false" @update-data="fetchTasksData"></overlay-form>
+      <overlay-form v-if="formOpen" @close-the-form="formOpen=false" @update-data="fetchTasksData"></overlay-form>
 
       <!-- Tasks Container -->
       <task-container v-if="!formOpen" :tasks="tasks" @update-data="fetchTasksData"></task-container>
